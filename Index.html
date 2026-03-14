@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise</title><style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#000,#1f1f1f);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+text-align:center;
+}
+
+.card{
+background:rgba(0,0,0,0.7);
+padding:30px;
+border-radius:20px;
+width:340px;
+box-shadow:0 0 40px rgba(255,255,255,0.2);
+z-index:2;
+}
+
+/* photo */
+
+.photo{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #ff4d6d;
+margin-bottom:10px;
+}
+
+/* name */
+
+.name{
+font-size:22px;
+color:#ff4d6d;
+margin-bottom:10px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{opacity:0.6;}
+to{opacity:1;}
+}
+
+/* gift */
+
+.gift{
+font-size:70px;
+cursor:pointer;
+animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+/* cake */
+
+.cake{
+font-size:60px;
+display:none;
+}
+
+/* wish */
+
+#wish{
+margin-top:15px;
+font-size:18px;
+min-height:40px;
+}
+
+/* hearts */
+
+.heart{
+position:absolute;
+bottom:-20px;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+
+</style></head><body><div class="card"><img src="https://i.imgur.com/2DhmtJ4.jpg" class="photo"><div class="name">For Someone Special 💖</div><div class="gift" onclick="openGift()">🎁</div><div class="cake" id="cake">🎂</div><p id="wish"></p></div><audio id="music" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio><script>
+
+let text="Happy Birthday ❤️ I hope your life is filled with happiness, love and beautiful memories. You are truly special ✨";
+let i=0;
+
+function openGift(){
+
+document.querySelector(".gift").style.display="none";
+
+document.getElementById("cake").style.display="block";
+
+document.getElementById("music").play();
+
+typeText();
+
+}
+
+function typeText(){
+
+if(i<text.length){
+
+document.getElementById("wish").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typeText,40);
+
+}
+
+}
+
+/* hearts */
+
+function heart(){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{h.remove()},6000);
+
+}
+
+setInterval(heart,500);
+
+</script></body>
+</html>
